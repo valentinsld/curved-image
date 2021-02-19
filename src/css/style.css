@@ -1,5 +1,7 @@
 :root {
-  --color: #eacb91
+  --background: #AEBED8;
+  --orange: #D9A25F;
+  --color: #8C694A;
 }
 
 html, body {
@@ -10,7 +12,9 @@ html, body {
   margin: 0;
   padding: 0;
 
-  background-color: var(--color);
+  background-color: var(--background);
+
+  font-family: 'Cyrene';
 }
 
 #canva img {
@@ -27,10 +31,21 @@ html, body {
 
 .title {
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 50%;
-
+  
   transform: translate3d(-50%, -50%, 0);
 
-  cursor: pointer;
+  font-size: 7vw;
+  color: var(--color)!important;
+  text-decoration: none;
+
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.title__line2 {
+  text-align: right;
 }

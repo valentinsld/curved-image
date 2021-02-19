@@ -7,6 +7,7 @@ import curvedImage from './curvedImage'
 class App {
   constructor() {
     this.container = document.getElementById('canva')
+    this.title = document.querySelector('.title')
 
     this.cursor = {
       target: { x: 0, y: 0 },
@@ -113,6 +114,8 @@ class App {
   */
   createEvents() {
     window.addEventListener('resize', this.onResize.bind(this))
+    this.title.addEventListener('mouseenter', this.appearImage.bind(this))
+    this.title.addEventListener('mouseleave', this.disappearImage.bind(this))
 
     window.addEventListener("mousemove", this.mooveCursor.bind(this));
   }
@@ -121,13 +124,13 @@ class App {
     this.cursor.target.x = (e.clientX / this.screen.width) * this.viewport.width;
     this.cursor.target.y = (-e.clientY + this.screen.height) / this.screen.height * this.viewport.height;
   }
-}
 
-function getDistanceTwoPoints(x1, x2, y1, y2) {
-  var a = x1 - x2;
-  var b = y1 - y2;
-
-  return Math.sqrt( a*a + b*b );
+  appearImage() {
+    this.image.setHover(true)
+  }
+  disappearImage() {
+    this.image.setHover(false)
+  }
 }
 
 export default new App()

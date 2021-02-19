@@ -24,7 +24,8 @@ void main() {
   newPosition.y += sin(uv.x * PI) * -uStrength.y;
   newPosition.x += sin(uv.y * PI) * -uStrength.x;
 
-  // newPosition.x += sin(uv.x * PI) * -uStrength.x;
+  newPosition.y += sin(uv.y * PI) * -uStrength.y;
+  newPosition.x += sin(uv.x * PI) * -uStrength.x;
   // newPosition.x += (uv.y - 0.5) * -uStrength.x;
  
   gl_Position = projectionMatrix * newPosition;

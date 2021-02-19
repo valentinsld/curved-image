@@ -4,6 +4,8 @@ uniform vec2 uImageSizes;
 uniform vec2 uPlaneSizes;
 uniform sampler2D tMap;
  
+uniform float uAnimation;
+
 varying vec2 vUv;
  
 void main() {
@@ -18,5 +20,5 @@ void main() {
   );
  
   gl_FragColor.rgb = texture2D(tMap, uv).rgb;
-  gl_FragColor.a = 1.0;
+  gl_FragColor.a = uAnimation;
 }

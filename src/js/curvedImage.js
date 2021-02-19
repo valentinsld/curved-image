@@ -11,6 +11,9 @@ export default class curvedImage{
     this.viewport = viewport
 
     this.image = image
+    this.hover = false
+    this.animation = 0
+    this.startAnimation = undefined
 
     this.createMesh()
 
@@ -46,7 +49,8 @@ export default class curvedImage{
         uPlaneSizes: { value: [0, 0] },
         uImageSizes: { value: [0, 0] },
         uViewportSizes: { value: [this.viewport.width, this.viewport.height] },
-        uStrength: { value: [0, 0] }
+        uStrength: { value: [0, 0] },
+        uAnimation: { value: this.animation },
       },
       transparent: true
     })
@@ -92,5 +96,24 @@ export default class curvedImage{
 
     this.plane.program.uniforms.uPos.value = [0, 0]
     this.plane.program.uniforms.uStrength.value = [strength.x, strength.y]
+
+    if (this.hover && this.animation < 1) {
+      this.animation = (new Date() - this.startAnimation) / 1000 * 2
+      this.animation = Math.min(this.animation, 1)
+
+      this.plane.program.uniforms.uAnimation.value = this.animation
+    } else if (!this.hover && this.animation > 0) {
+      this.animation = 1 - ((new Date() - this.startAnimation) / 1000 * 2)
+      this.animation = Math.max(this.animation, 0)
+
+      this.plane.program.uniforms.uAnimation.value = this.animation
+    }
+
+    console.log(this.animation)
+  }
+
+  setHover(boolean) {
+    this.hover = boolean
+    this.startAnimation = new Date()
   }
 }
