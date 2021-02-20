@@ -15,7 +15,8 @@ uniform vec2 uStrength;
 uniform vec2 uViewportSizes;
  
 varying vec2 vUv;
- 
+uniform float uAnimation;
+
 
 void main() {
   vUv = uv;
@@ -27,6 +28,7 @@ void main() {
   newPosition.y += sin(uv.y * PI) * -uStrength.y;
   newPosition.x += sin(uv.x * PI) * -uStrength.x;
   // newPosition.x += (uv.y - 0.5) * -uStrength.x;
+  newPosition.z -= (1.0 - uAnimation) * 0.6;
  
   gl_Position = projectionMatrix * newPosition;
 }
