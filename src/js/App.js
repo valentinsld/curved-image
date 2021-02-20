@@ -1,4 +1,7 @@
 import { Renderer, Camera, Transform, Plane, Vec2 } from 'ogl'
+import gsap from 'gsap'
+import SplitText from './utils/SplitText'
+gsap.registerPlugin(SplitText);
 
 import { lerp } from './utils/lerp'
 
@@ -29,6 +32,7 @@ class App {
     this.onResize()
     
     this.createImage()
+    this.splitTitle()
 
     this.createEvents()
     this.update()
@@ -64,6 +68,18 @@ class App {
       viewport: this.viewport,
       image: this.imageElement
     })
+  }
+
+  splitTitle() {
+    this.animationTitle = gsap.timeline()
+    this.lettersTitle = new SplitText(this.title, {type:"line,chars", charsClass: "char"}).chars
+
+    this.lettersTitle.forEach(letter => {
+      letter.dataset.text = letter.innerText
+    });
+  
+    this.animationTitle.fromTo(this.lettersTitle,{y: 0}, {y: "100%", ease: "expo.out", duration: 1.4, stagger: 0.02});
+    this.animationTitle.pause();
   }
 
   update() {
@@ -127,9 +143,14 @@ class App {
 
   appearImage() {
     this.image.setHover(true)
+
+    this.animationTitle.restart()  
   }
   disappearImage() {
     this.image.setHover(false)
+
+    this.animationTitle.seek(1.2)
+    this.animationTitle.reverse()
   }
 }
 

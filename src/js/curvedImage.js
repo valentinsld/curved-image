@@ -1,5 +1,7 @@
 import { Transform, Plane, Program, Mesh, Texture } from 'ogl'
 
+import easingsFunctions from './utils/easings'
+
 import vertex from '../shaders/vertex.glsl'
 import fragment from '../shaders/fragment.glsl'
 
@@ -106,10 +108,8 @@ export default class curvedImage{
       this.animation = 1 - ((new Date() - this.startAnimation) / 1000 * 2)
       this.animation = Math.max(this.animation, 0)
 
-      this.plane.program.uniforms.uAnimation.value = this.animation
+      this.plane.program.uniforms.uAnimation.value = easingsFunctions.easeInOutCubic(this.animation)
     }
-
-    console.log(this.animation)
   }
 
   setHover(boolean) {
