@@ -2,7 +2,7 @@
 
 ## Preview
 ![curved image : la jeune fille à la perle](https://github.com/valentinsld/curved-image/blob/main/thumbnail.png?raw=true)
-[Try it !](https://lelab.valentinsld.fr/experiences/2021/02/curvedImage/)
+![Try it !](https://lelab.valentinsld.fr/experiences/2021/02/curvedImage/)
 
 ## Setup
 Boilerplate by Bruno Simon (Three.js Journey)
